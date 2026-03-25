@@ -19,7 +19,7 @@ public class BuscarVeiculoPorIdUseCaseImpl implements BuscarVeiculoPorIdUseCase 
         var existente = gateway.buscarVeiculoPorId(id);
 
         if (existente == null) {
-            throw new RuntimeException("Veiculo não encontrada");
+            throw new RuntimeException("Veiculo não encontrado");
         }
 
         return existente;

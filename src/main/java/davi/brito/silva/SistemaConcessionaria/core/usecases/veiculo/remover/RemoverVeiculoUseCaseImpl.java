@@ -17,7 +17,7 @@ public class RemoverVeiculoUseCaseImpl implements RemoverVeiculoUseCase{
         var existente = gateway.buscarVeiculoPorId(veiculo.id());
 
         if (existente == null){
-            throw new RuntimeException("Veiculo não encontrada");
+            throw new RuntimeException("Veiculo não encontrado");
         }
 
         return gateway.removerVeiculo(veiculo);

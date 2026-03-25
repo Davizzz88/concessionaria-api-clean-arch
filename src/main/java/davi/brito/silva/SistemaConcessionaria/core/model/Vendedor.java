@@ -1,8 +1,5 @@
 package davi.brito.silva.SistemaConcessionaria.core.model;
 
-import davi.brito.silva.SistemaConcessionaria.infrastructure.persistence.entities.ClienteVendaEntity;
-import davi.brito.silva.SistemaConcessionaria.infrastructure.persistence.entities.ConcessionariaEntity;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,8 +12,8 @@ public record Vendedor(
         Integer idade,
         String telefone,
         Integer porcentagemComissao,
-        ConcessionariaEntity concessionaria,
-        List<ClienteVendaEntity> vendas,
+        Concessionaria concessionaria,
+        List<ClienteVenda> vendas,
         LocalDate dataCadastro,
         LocalDateTime ultimaAtualizacao) {
 }

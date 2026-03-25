@@ -38,14 +38,26 @@ Em vez de utilizar anotações genéricas como `@JsonIgnore`, optei por uma solu
 
 ---
 
+## Testes Automatizados
+
+Para garantir a robustez das regras de negócio e a facilidade de manutenção, implementei **Testes Unitários** de alta performance cobrindo todos os UseCases do sistema.
+
+- **Estrutura AAA (Arrange, Act, Assert):** Testes organizados para máxima clareza e previsibilidade de resultados.
+- **JUnit 5 & Mockito:** Utilização de Mocks para isolar a lógica de negócio de dependências da camada de infraestrutura.
+- **ArgumentCaptor:** Técnica aplicada para capturar e validar os dados exatos que são transacionados entre as camadas do sistema.
+- **Cobertura de Exceções:** Garantia de que o sistema reage corretamente a falhas e regras de negócio violadas, não apenas a fluxos de sucesso.
+
+---
+
 ## Tecnologias Utilizadas
 
 *   **Java 21**
 *   **Spring Boot**
 *   **Spring Data JPA** e **H2 Database** (Em memória)
+*   **JUnit 5** e **Mockito** 
 *   **MapStruct** (Mapeamento de objetos de alta performance)
 *   **Lombok** (Produtividade e código limpo)
-*   **Arquitetura Baseada Clean Architecture**
+*   **Arquitetura Baseada em Clean Architecture**
 
 ---
 

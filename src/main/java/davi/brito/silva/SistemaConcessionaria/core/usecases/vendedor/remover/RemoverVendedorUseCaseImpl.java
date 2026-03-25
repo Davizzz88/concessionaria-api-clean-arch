@@ -17,7 +17,7 @@ public class RemoverVendedorUseCaseImpl implements RemoverVendedorUseCase{
         var existente = gateway.buscarVendedorPorId(vendedor.id());
 
         if (existente == null){
-            throw new RuntimeException("Vendedor não encontrada");
+            throw new RuntimeException("Vendedor não encontrado");
         }
 
         return gateway.removerVendedor(vendedor);
