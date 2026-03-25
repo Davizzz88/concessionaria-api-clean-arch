@@ -29,7 +29,7 @@ public class ClienteVendaEntity {
     private String cpfCliente;
 
     @Column(name = "telefone_cliente")
-    private String tefefoneCliente;
+    private String telefoneCliente;
 
     @OneToOne
     @JoinColumn(name = "id_veiculo")

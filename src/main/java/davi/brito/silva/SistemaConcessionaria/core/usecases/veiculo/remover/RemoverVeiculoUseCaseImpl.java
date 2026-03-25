@@ -1,13 +1,13 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.remover;
 
-import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 
 public class RemoverVeiculoUseCaseImpl implements RemoverVeiculoUseCase{
 
-    private final ConcessionariaGateway gateway;
+    private final VeiculoGateway gateway;
 
-    public RemoverVeiculoUseCaseImpl(ConcessionariaGateway gateway) {
+    public RemoverVeiculoUseCaseImpl(VeiculoGateway gateway) {
         this.gateway = gateway;
     }
 

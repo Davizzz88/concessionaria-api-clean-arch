@@ -1,7 +1,7 @@
 package davi.brito.silva.SistemaConcessionaria;
 
 import davi.brito.silva.SistemaConcessionaria.core.enums.StatusVeiculo;
-import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.atualizar.AtualizarVeiculoUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.buscarPorId.BuscarVeiculoPorIdUseCaseImpl;
@@ -45,7 +45,7 @@ public class VeiculoTest {
     private RemoverVeiculoUseCaseImpl removerVeiculoUseCase;
 
     @Mock
-    private ConcessionariaGateway gateway;
+    private VeiculoGateway gateway;
 
     @Nested
     class CriarVeiculoUseCaseImplTest {

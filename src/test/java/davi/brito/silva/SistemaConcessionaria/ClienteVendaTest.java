@@ -1,7 +1,7 @@
 package davi.brito.silva.SistemaConcessionaria;
 
 import davi.brito.silva.SistemaConcessionaria.core.enums.StatusVeiculo;
-import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.ClienteVendaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.ClienteVenda;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.vendas.buscarPorId.BuscarClienteVendaPorIdUseCaseImpl;
@@ -30,7 +30,7 @@ public class ClienteVendaTest {
     private BuscarClienteVendaPorIdUseCaseImpl buscarClienteVendaPorIdUseCase;
 
     @Mock
-    private ConcessionariaGateway gateway;
+    private ClienteVendaGateway gateway;
 
     @Nested
     class CriarClienteVendaUseCaseImplTest {
@@ -81,7 +81,7 @@ public class ClienteVendaTest {
                     () -> assertEquals(clienteVenda.id(), resultado.id()),
                     () -> assertEquals(clienteVenda.nomeCliente(), resultado.nomeCliente()),
                     () -> assertEquals(clienteVenda.cpfCliente(), resultado.cpfCliente()),
-                    () -> assertEquals(clienteVenda.tefefoneCliente(), resultado.tefefoneCliente()),
+                    () -> assertEquals(clienteVenda.telefoneCliente(), resultado.telefoneCliente()),
                     () -> assertEquals(clienteVenda.veiculo(), resultado.veiculo()),
                     () -> assertEquals(clienteVenda.dataVenda(), resultado.dataVenda()));
 

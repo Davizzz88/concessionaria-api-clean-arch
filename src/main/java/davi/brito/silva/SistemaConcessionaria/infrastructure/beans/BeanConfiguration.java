@@ -1,10 +1,13 @@
 package davi.brito.silva.SistemaConcessionaria.infrastructure.beans;
 
+import davi.brito.silva.SistemaConcessionaria.core.gateway.ClienteVendaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.atualizar.AtualizarConcessionariaUseCase;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.atualizar.AtualizarConcessionariaUseCaseImpl;
-import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionatiaPorIdUseCase;
-import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionatiaPorIdUseCaseImpl;
+import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionariaPorIdUseCase;
+import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionariaPorIdUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.criar.CriarConcessionariaUseCase;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.criar.CriarConcessionariaUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.remover.RemoverConcessionariaUseCase;
@@ -33,7 +36,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BeanCofiguration {
+public class BeanConfiguration {
 
     @Bean
     public CriarConcessionariaUseCase criarConcessionariaUseCase(ConcessionariaGateway gateway) {
@@ -51,61 +54,61 @@ public class BeanCofiguration {
     }
 
     @Bean
-    public BuscarConcessionatiaPorIdUseCase buscarConcessionariaPorIdUseCase(ConcessionariaGateway gateway) {
-        return new BuscarConcessionatiaPorIdUseCaseImpl(gateway);
+    public BuscarConcessionariaPorIdUseCase buscarConcessionariaPorIdUseCase(ConcessionariaGateway gateway) {
+        return new BuscarConcessionariaPorIdUseCaseImpl(gateway);
     }
 
     @Bean
-    public CriarVendedorUseCase criarVendedorUseCase(ConcessionariaGateway gateway) {
+    public CriarVendedorUseCase criarVendedorUseCase(VendedorGateway gateway) {
         return new CriarVendedorUseCaseImpl(gateway);
     }
 
     @Bean
-    public AtualizarVendedorUseCase atualizarVendedorUseCase(ConcessionariaGateway gateway) {
+    public AtualizarVendedorUseCase atualizarVendedorUseCase(VendedorGateway gateway) {
         return new AtualizarVendedorUseCaseImpl(gateway);
     }
 
     @Bean
-    public RemoverVendedorUseCase removerVendedorUseCase(ConcessionariaGateway gateway) {
+    public RemoverVendedorUseCase removerVendedorUseCase(VendedorGateway gateway) {
         return new RemoverVendedorUseCaseImpl(gateway);
     }
 
     @Bean
-    public BuscarVendedorPorIdUseCase buscarVendedorPorIdUseCase(ConcessionariaGateway gateway) {
+    public BuscarVendedorPorIdUseCase buscarVendedorPorIdUseCase(VendedorGateway gateway) {
         return new BuscarVendedorPorIdUseCaseImpl(gateway);
     }
 
     @Bean
-    public CriarVeiculoUseCase criarVeiculoUseCase(ConcessionariaGateway gateway) {
+    public CriarVeiculoUseCase criarVeiculoUseCase(VeiculoGateway gateway) {
         return new CriarVeiculoUseCaseImpl(gateway);
     }
 
 
     @Bean
-    public AtualizarVeiculoUseCase atualizarVeiculoUseCase(ConcessionariaGateway gateway) {
+    public AtualizarVeiculoUseCase atualizarVeiculoUseCase(VeiculoGateway gateway) {
         return new AtualizarVeiculoUseCaseImpl(gateway);
 
     }
 
     @Bean
-    public RemoverVeiculoUseCase removerVeiculoUseCase(ConcessionariaGateway gateway) {
+    public RemoverVeiculoUseCase removerVeiculoUseCase(VeiculoGateway gateway) {
         return new RemoverVeiculoUseCaseImpl(gateway);
     }
 
     @Bean
-    public BuscarVeiculoPorIdUseCase buscarVeiculoPorIdUseCase(ConcessionariaGateway gateway) {
+    public BuscarVeiculoPorIdUseCase buscarVeiculoPorIdUseCase(VeiculoGateway gateway) {
         return new BuscarVeiculoPorIdUseCaseImpl(gateway);
 
     }
 
     @Bean
-    public CriarClienteVendaUseCase criarClienteVendaUseCase(ConcessionariaGateway gateway) {
+    public CriarClienteVendaUseCase criarClienteVendaUseCase(ClienteVendaGateway gateway) {
         return new CriarClienteVendaUseCaseImpl(gateway);
 
     }
 
     @Bean
-    public BuscarClienteVendaPorIdUseCase buscarClienteVendaPorIdUseCase(ConcessionariaGateway gateway) {
+    public BuscarClienteVendaPorIdUseCase buscarClienteVendaPorIdUseCase(ClienteVendaGateway gateway) {
         return new BuscarClienteVendaPorIdUseCaseImpl(gateway);
     }
 

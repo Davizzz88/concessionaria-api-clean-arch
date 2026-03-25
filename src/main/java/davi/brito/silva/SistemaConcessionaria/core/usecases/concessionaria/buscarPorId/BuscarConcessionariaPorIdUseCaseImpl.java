@@ -5,11 +5,11 @@ import davi.brito.silva.SistemaConcessionaria.core.model.Concessionaria;
 
 import java.util.UUID;
 
-public class BuscarConcessionatiaPorIdUseCaseImpl implements BuscarConcessionatiaPorIdUseCase{
+public class BuscarConcessionariaPorIdUseCaseImpl implements BuscarConcessionariaPorIdUseCase {
 
     private final ConcessionariaGateway gateway;
 
-    public BuscarConcessionatiaPorIdUseCaseImpl(ConcessionariaGateway gateway) {
+    public BuscarConcessionariaPorIdUseCaseImpl(ConcessionariaGateway gateway) {
         this.gateway = gateway;
     }
 

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Concessionaria;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.atualizar.AtualizarConcessionariaUseCaseImpl;
-import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionatiaPorIdUseCaseImpl;
+import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.buscarPorId.BuscarConcessionariaPorIdUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.criar.CriarConcessionariaUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.remover.RemoverConcessionariaUseCaseImpl;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +35,7 @@ public class ConcessionariaTest {
     private CriarConcessionariaUseCaseImpl criarConcessionariaUseCase;
 
     @InjectMocks
-    private BuscarConcessionatiaPorIdUseCaseImpl buscarConcessionatiaPorIdUseCase;
+    private BuscarConcessionariaPorIdUseCaseImpl buscarConcessionatiaPorIdUseCase;
 
     @InjectMocks
     private AtualizarConcessionariaUseCaseImpl atualizarConcessionariaUseCase;
@@ -209,7 +209,7 @@ public class ConcessionariaTest {
             );
 
             when(gateway.buscarConcessionariaPorId(concessionaria.id())).thenReturn(concessionaria);
-            when(gateway.atualizarConcessionaria(concessionariaAtualizada)).thenReturn(concessionariaAtualizada);
+            when(gateway.atualizarConcessionaria(captorConcessionaria.capture())).thenReturn(concessionariaAtualizada);
 
             // Act
 
@@ -220,9 +220,9 @@ public class ConcessionariaTest {
             assertNotNull(atualizar);
             assertEquals(concessionaria.id(), atualizar.id());
 
-            verify(gateway, times(1)).buscarConcessionariaPorId(captorUUID.capture());
-            verify(gateway, times(1)).atualizarConcessionaria(captorConcessionaria.capture());
             var capturar = captorConcessionaria.getValue();
+            verify(gateway, times(1)).buscarConcessionariaPorId(captorUUID.capture());
+            verify(gateway, times(1)).atualizarConcessionaria(capturar);
             assertAll(
                     () -> assertEquals(concessionariaAtualizada.id(), capturar.id()),
                     () -> assertEquals(concessionariaAtualizada.nome(), capturar.nome()),

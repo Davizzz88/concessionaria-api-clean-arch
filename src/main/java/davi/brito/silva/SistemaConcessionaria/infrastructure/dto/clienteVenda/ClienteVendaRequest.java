@@ -6,7 +6,7 @@ import davi.brito.silva.SistemaConcessionaria.infrastructure.persistence.entitie
 public record ClienteVendaRequest(
         String nomeCliente,
         String cpfCliente,
-        String tefefoneCliente,
+        String telefoneCliente,
         VeiculoEntity veiculo,
         VendedorEntity vendedor,
         String tipoPagamento) {

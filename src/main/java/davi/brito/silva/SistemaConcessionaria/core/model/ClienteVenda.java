@@ -7,7 +7,7 @@ public record ClienteVenda(
         UUID id,
         String nomeCliente,
         String cpfCliente,
-        String tefefoneCliente,
+        String telefoneCliente,
         Veiculo veiculo,
         Vendedor vendedor,
         String tipoPagamento,

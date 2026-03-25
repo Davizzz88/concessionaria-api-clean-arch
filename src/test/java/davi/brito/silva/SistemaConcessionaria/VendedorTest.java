@@ -1,6 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria;
 
-import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Vendedor;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.atualizar.AtualizarVendedorUseCaseImpl;
 import davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.buscarPorId.BuscarVendedorPorIdUseCaseImpl;
@@ -45,7 +45,7 @@ public class VendedorTest {
     private RemoverVendedorUseCaseImpl removerVendedorUseCase;
 
     @Mock
-    private ConcessionariaGateway gateway;
+    private VendedorGateway gateway;
 
     @Nested
     class CriarVendedorUseCaseImplTest {

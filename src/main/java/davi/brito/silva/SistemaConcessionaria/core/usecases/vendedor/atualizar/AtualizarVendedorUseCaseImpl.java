@@ -1,15 +1,15 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.atualizar;
 
-import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
+import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Vendedor;
 
 import java.time.LocalDateTime;
 
 public class AtualizarVendedorUseCaseImpl implements AtualizarVendedorUseCase{
 
-    private final ConcessionariaGateway geteway;
+    private final VendedorGateway geteway;
 
-    public AtualizarVendedorUseCaseImpl(ConcessionariaGateway geteway) {
+    public AtualizarVendedorUseCaseImpl(VendedorGateway geteway) {
         this.geteway = geteway;
     }
 
