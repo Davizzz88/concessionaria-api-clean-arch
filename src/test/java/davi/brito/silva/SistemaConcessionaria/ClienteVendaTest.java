@@ -207,7 +207,7 @@ public class ClienteVendaTest {
             var exception = assertThrows(RuntimeException.class,
                     () -> buscarClienteVendaPorIdUseCase.execute(idInexistente));
             verify(gateway, times(1)).buscarVendaPorId(idInexistente);
-            assertEquals("Venda não encontrada", exception.getMessage());
+            assertEquals("Venda com id (" + idInexistente + ") não encontrada", exception.getMessage());
 
         }
 

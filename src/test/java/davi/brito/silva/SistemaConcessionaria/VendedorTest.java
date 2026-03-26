@@ -176,7 +176,7 @@ public class VendedorTest {
             var exception = assertThrows(RuntimeException.class,
                     () -> buscarVendedorPorIdUseCase.execute(idInexistente));
             verify(gateway, times(1)).buscarVendedorPorId(idInexistente);
-            assertEquals("Vendedor não encontrado", exception.getMessage());
+            assertEquals("Vendedor com id (" + idInexistente + ") não encontrado", exception.getMessage());
 
         }
 
@@ -268,7 +268,7 @@ public class VendedorTest {
             var atualizarException = assertThrows(RuntimeException.class,
                     () -> atualizarVendedorUseCase.execute(vendedorAtualizado));
 
-            assertEquals("Vendedor não encontrado", atualizarException.getMessage());
+            assertEquals("Vendedor com id (" + captorUUID.getValue() + ") não encontrado", atualizarException.getMessage());
             verify(gateway, times(1)).buscarVendedorPorId(captorUUID.getValue());
             verify(gateway, times(0)).atualizarVendedor(any());
         }
@@ -335,7 +335,7 @@ public class VendedorTest {
             // Assert
 
             assertEquals(vendedor.id(), captorUUID.getValue());
-            assertEquals("Vendedor não encontrado", exception.getMessage());
+            assertEquals("Vendedor com id (" + captorUUID.getValue() + ") não encontrado", exception.getMessage());
             verify(gateway, times(1)).buscarVendedorPorId(captorUUID.getValue());
             verify(gateway, times(0)).removerVendedor(any());
         }

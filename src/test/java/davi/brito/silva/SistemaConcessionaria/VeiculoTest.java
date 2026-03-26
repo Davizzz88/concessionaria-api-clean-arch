@@ -182,7 +182,7 @@ public class VeiculoTest {
             var exception = assertThrows(RuntimeException.class,
                     () -> buscarVeiculoPorIdUseCase.execute(idInexistente));
             verify(gateway, times(1)).buscarVeiculoPorId(idInexistente);
-            assertEquals("Veiculo não encontrado", exception.getMessage());
+            assertEquals("Veiculo com id (" + idInexistente + ") não encontrado", exception.getMessage());
 
         }
 
@@ -282,7 +282,7 @@ public class VeiculoTest {
             var atualizarException = assertThrows(RuntimeException.class,
                     () -> atualizarVeiculoUseCase.execute(veiculoAtualizado));
 
-            assertEquals("Veiculo não encontrado", atualizarException.getMessage());
+            assertEquals("Veiculo com id (" + captorUUID.getValue() + ") não encontrado", atualizarException.getMessage());
             verify(gateway, times(1)).buscarVeiculoPorId(captorUUID.getValue());
             verify(gateway, times(0)).atualizarVeiculo(any());
         }
@@ -353,7 +353,7 @@ public class VeiculoTest {
             // Assert
 
             assertEquals(veiculo.id(), captorUUID.getValue());
-            assertEquals("Veiculo não encontrado", exception.getMessage());
+            assertEquals("Veiculo com id (" + captorUUID.getValue() + ") não encontrado", exception.getMessage());
             verify(gateway, times(1)).buscarVeiculoPorId(captorUUID.getValue());
             verify(gateway, times(0)).removerVeiculo(any());
         }

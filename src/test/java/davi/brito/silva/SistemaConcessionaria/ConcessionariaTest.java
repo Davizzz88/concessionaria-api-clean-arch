@@ -169,7 +169,7 @@ public class ConcessionariaTest {
 
             var exception = assertThrows(RuntimeException.class, () -> buscarConcessionatiaPorIdUseCase.execute(idInexistente));
             verify(gateway, times(1)).buscarConcessionariaPorId(idInexistente);
-            assertEquals("Concessionária não encontrada", exception.getMessage());
+            assertEquals("Concessionaria com id (" + idInexistente + ") não encontrada", exception.getMessage());
 
         }
 
@@ -259,7 +259,7 @@ public class ConcessionariaTest {
             var atualizarException = assertThrows(RuntimeException.class,
                     () -> atualizarConcessionariaUseCase.execute(concessionariaAtualizada));
 
-            assertEquals("Concessionária não encontrada", atualizarException.getMessage());
+            assertEquals("Concessionaria com id (" + captorUUID.getValue() + ") não encontrada", atualizarException.getMessage());
             verify(gateway, times(1)).buscarConcessionariaPorId(captorUUID.getValue());
             verify(gateway, times(0)).atualizarConcessionaria(any());
 
@@ -328,7 +328,7 @@ public class ConcessionariaTest {
             // Assert
 
             assertEquals(concessionaria.id(), captorUUID.getValue());
-            assertEquals("Concessionária não encontrada", exception.getMessage());
+            assertEquals("Concessionaria com id (" + captorUUID.getValue() + ") não encontrada", exception.getMessage());
             verify(gateway, times(1)).buscarConcessionariaPorId(captorUUID.getValue());
             verify(gateway, times(0)).removerConcessionaria(any());
 
