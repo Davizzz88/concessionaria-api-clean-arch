@@ -7,6 +7,7 @@ import davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.remover.Remo
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.veiculo.VeiculoRequest;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.veiculo.VeiculoResponse;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.VeiculoMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class ControllerVeiculo {
     private final VeiculoMapper veiculoMapper;
 
     @PostMapping("/veiculo")
-    public ResponseEntity<VeiculoResponse> criarVeiculo(@RequestBody VeiculoRequest request) {
+    public ResponseEntity<VeiculoResponse> criarVeiculo(@Valid @RequestBody VeiculoRequest request) {
         var criada = criarVeiculoUseCase.execute(veiculoMapper.toDomain(veiculoMapper.toRequest(request)));
         return ResponseEntity.ok(veiculoMapper.toResponse(criada));
     }
@@ -38,7 +39,7 @@ public class ControllerVeiculo {
 
     @PutMapping("/veiculo/{id}")
     public ResponseEntity<VeiculoResponse> atualizarVeiculo(@PathVariable("id") UUID id,
-                                                            @RequestBody VeiculoRequest request) {
+                                                            @Valid @RequestBody VeiculoRequest request) {
         var veiculo = veiculoMapper.toRequest(request);
         veiculo.setId(id);
         var atualizada = atualizarVeiculoUseCase.execute(veiculoMapper.toDomain(veiculo));

@@ -7,6 +7,7 @@ import davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.remover.Rem
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.vendedor.VendedorRequest;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.vendedor.VendedorResponse;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.VendedorMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class ControllerVendedor {
     private final VendedorMapper vendedorMapper;
 
     @PostMapping("/vendedor")
-    public ResponseEntity<VendedorResponse> criarVendedor(@RequestBody VendedorRequest request) {
+    public ResponseEntity<VendedorResponse> criarVendedor(@Valid @RequestBody VendedorRequest request) {
         var criada = criarVendedorUseCase.execute(vendedorMapper.toDomain(vendedorMapper.toRequest(request)));
         return ResponseEntity.ok(vendedorMapper.toResponse(criada));
     }
@@ -38,7 +39,7 @@ public class ControllerVendedor {
 
     @PutMapping("/vendedor/{id}")
     public ResponseEntity<VendedorResponse> atualizarVendedor(@PathVariable("id") UUID id,
-                                                              @RequestBody VendedorRequest request) {
+                                                              @Valid @RequestBody VendedorRequest request) {
         var vendedor = vendedorMapper.toRequest(request);
         vendedor.setId(id);
         var atualizada = atualizarVendedorUseCase.execute(vendedorMapper.toDomain(vendedor));

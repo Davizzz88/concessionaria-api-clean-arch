@@ -5,6 +5,7 @@ import davi.brito.silva.SistemaConcessionaria.core.usecases.vendas.criar.CriarCl
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.clienteVenda.ClienteVendaRequest;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.clienteVenda.ClienteVendaResponse;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.ClienteVendaMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class ControllerClienteVenda {
 
 
     @PostMapping("/venda/{id}")
-    public ResponseEntity<ClienteVendaResponse> criarClienteVenda(@RequestBody ClienteVendaRequest request,
+    public ResponseEntity<ClienteVendaResponse> criarClienteVenda(@Valid @RequestBody ClienteVendaRequest request,
                                                                   @PathVariable("id") UUID idVeiculo) {
         var criada = criarClienteVendaUseCase.execute(clienteVendaMapper.
                 toDomain(clienteVendaMapper.toRequest(request)), idVeiculo);

@@ -7,6 +7,7 @@ import davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.remov
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.concessionaria.ConcessionariaRequest;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.dto.concessionaria.ConcessionariaResponse;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.ConcessionariaMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class ControllerConcessionaria {
     private final ConcessionariaMapper concessionariaMapper;
 
     @PostMapping
-    public ResponseEntity<ConcessionariaResponse> criarConcessionaria(@RequestBody ConcessionariaRequest request) {
+    public ResponseEntity<ConcessionariaResponse> criarConcessionaria(@Valid @RequestBody ConcessionariaRequest request) {
         var criada = criarConcessionariaUseCase.execute(concessionariaMapper.toDomain(concessionariaMapper.toRequest(request)));
         return ResponseEntity.ok(concessionariaMapper.toResponse(criada));
     }
@@ -38,7 +39,7 @@ public class ControllerConcessionaria {
 
     @PutMapping("/{id}")
     public ResponseEntity<ConcessionariaResponse> atualizarConcessionaria(@PathVariable("id") UUID id,
-                                                                          @RequestBody ConcessionariaRequest request) {
+                                                                          @Valid @RequestBody ConcessionariaRequest request) {
         var concessionaria = concessionariaMapper.toRequest(request);
         concessionaria.setId(id);
         var atualizada = atualizarConcessionariaUseCase.execute(concessionariaMapper.toDomain(concessionaria));
