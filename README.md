@@ -1,8 +1,8 @@
-# Sistema de Gestão de Concessionária (SistemaConcessionaria)
+# API Sistema de Gestão de Concessionária
 
 Este projeto é uma aplicação **Spring Boot** autêntica, desenvolvida para gerenciar de forma profissional as operações de uma concessionária de veículos, abrangendo desde a gestão de estoque até o fluxo completo de vendas e comissionamento.
 
-O foco principal deste desenvolvimento foi a aplicação de **Clean Architecture** e **Boas Práticas de Design de Software**, garantindo que as regras de negócio sejam independentes dos detalhes de infraestrutura (como banco de dados ou frameworks).
+O foco principal deste desenvolvimento foi a aplicação de **Clean Architecture** e **SOLID** e padrões nativos de Design de Software, garantindo um "Core" (Regras de Negócio) sejam independentes dos detalhes de infraestrutura (como banco de dados ou frameworks).
 
 ---
 
@@ -14,10 +14,12 @@ A aplicação segue os princípios da **Arquitetura Limpa**, organizada em camad
 *   **Models:** Representam as entidades do mundo real (`Concessionaria`, `Veiculo`, `Vendedor`, `Venda`) usando **Records**, garantindo imutabilidade e clareza no transporte de dados.
 *   **UseCases:** Cada ação do sistema é um caso de uso isolado (ex: `CriarClienteVendaUseCase`). Isso facilita a manutenção e evita "classes gigantes" que fazem tudo.
 *   **Gateways (Interfaces):** São contratos de como o Core deve se comunicar com o mundo externo, sem saber se esta usando um banco SQL, NoSQL ou uma API externa.
+*   **Exception Hierarchy:** Hierarquia robusta de exceções de domínio (`DomainException` -> `NotFoundException` -> específicas), impedindo o vazamento de exceções infraestruturais (como SQL) nas regras de negócio.
 
 ### 2. Infraestrutura 
 *   **Persistence:** Utilizei o **Spring Data JPA** com entidades Hibernate robustas, aplicando mapeamentos complexos de `OneToMany` e `OneToOne`.
 *   **GatewayImpl:** Onde o contrato do Core é cumprido, realizando o acesso real aos dados.
+*   **Controllers & RestAdvice:** Camada de entrega REST blindada por um **GlobalExceptionHandler** para tratamento universal e padronizado de códigos HTTP (400, 404, 500).
 *   **DTOs (Data Transfer Objects):** Apliquei o padrão DTO para blindar as entidades. O banco de dados nunca é exposto diretamente à API, protegendo a integridade do sistema.
 *   **MapStruct:** Toda a conversão entre Domínio, Entidade e DTO é feita de forma automatizada e performática pelo MapStruct, evitando código repetitivo.
 
@@ -38,7 +40,7 @@ Em vez de utilizar anotações genéricas como `@JsonIgnore`, optei por uma solu
 
 ---
 
-## Testes Automatizados
+## Qualidade de Código (Testes Automatizados)
 
 Para garantir a robustez das regras de negócio e a facilidade de manutenção, implementei **Testes Unitários** de alta performance cobrindo todos os UseCases do sistema.
 
@@ -57,6 +59,7 @@ Para garantir a robustez das regras de negócio e a facilidade de manutenção, 
 *   **JUnit 5** e **Mockito** 
 *   **MapStruct** (Mapeamento de objetos de alta performance)
 *   **Lombok** (Produtividade e código limpo)
+*   **Hibernate Validator**
 *   **Arquitetura Baseada em Clean Architecture**
 
 ---
