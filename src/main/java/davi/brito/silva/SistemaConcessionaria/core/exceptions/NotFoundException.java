@@ -1,0 +1,9 @@
+package davi.brito.silva.SistemaConcessionaria.core.exceptions;
+
+public class NotFoundException extends DomainException {
+
+    public NotFoundException(String message) {
+        super(message);
+    }
+
+}
