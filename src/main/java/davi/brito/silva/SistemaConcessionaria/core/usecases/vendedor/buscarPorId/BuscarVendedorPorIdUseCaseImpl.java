@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.buscarPorId;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VendedorNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Vendedor;
 
@@ -19,7 +20,7 @@ public class BuscarVendedorPorIdUseCaseImpl implements BuscarVendedorPorIdUseCas
         var existente = gateway.buscarVendedorPorId(id);
 
         if (existente == null) {
-            throw new RuntimeException("Vendedor não encontrado");
+            throw new VendedorNaoEncontradoException(id);
         }
 
         return existente;

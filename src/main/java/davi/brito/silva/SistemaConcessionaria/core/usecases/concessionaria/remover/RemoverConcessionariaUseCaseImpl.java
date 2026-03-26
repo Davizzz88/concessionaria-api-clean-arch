@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.remover;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.ConcessionariaNaoEncontradaException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Concessionaria;
 
@@ -17,7 +18,7 @@ public class RemoverConcessionariaUseCaseImpl implements RemoverConcessionariaUs
         var existente = gateway.buscarConcessionariaPorId(concessionaria.id());
 
         if (existente == null){
-            throw new RuntimeException("Concessionária não encontrada");
+            throw new ConcessionariaNaoEncontradaException(concessionaria.id());
         }
 
         return gateway.removerConcessionaria(concessionaria);

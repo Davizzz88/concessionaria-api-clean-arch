@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.infrastructure.gateway;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.ConcessionariaNaoEncontradaException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Concessionaria;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.ConcessionariaMapper;
@@ -32,11 +33,8 @@ public class ConcessionariaGatewayImpl implements ConcessionariaGateway {
     @Override
     public Concessionaria removerConcessionaria(Concessionaria concessionaria) {
 
-        var existente = repositoryConcessionaria.findById(concessionaria.id());
-
-        if (existente.isEmpty()){
-            throw new RuntimeException("Concessionária não encontrada");
-        }
+        repositoryConcessionaria.findById(concessionaria.id()).
+                orElseThrow(() -> new ConcessionariaNaoEncontradaException(concessionaria.id()));
 
         repositoryConcessionaria.deleteByIdAndNome(concessionaria.id(),concessionaria.nome());
 
@@ -47,6 +45,6 @@ public class ConcessionariaGatewayImpl implements ConcessionariaGateway {
     @Override
     public Concessionaria buscarConcessionariaPorId(UUID id) {
         return repositoryConcessionaria.findById(id).map(concessionariaMapper::toDomain).
-                orElseThrow(() -> new RuntimeException("Concessionária não encontrada"));
+                orElseThrow(() -> new ConcessionariaNaoEncontradaException(id));
     }
 }

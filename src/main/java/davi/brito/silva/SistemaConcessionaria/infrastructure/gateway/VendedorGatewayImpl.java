@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.infrastructure.gateway;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VendedorNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Vendedor;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.VendedorMapper;
@@ -31,11 +32,8 @@ public class VendedorGatewayImpl implements VendedorGateway {
     @Override
     public Vendedor removerVendedor(Vendedor vendedor) {
 
-        var existente = repositoryVendedor.findById(vendedor.id());
-
-        if (existente.isEmpty()){
-            throw new RuntimeException("Vendedor não encontrado");
-        }
+        repositoryVendedor.findById(vendedor.id()).
+                orElseThrow(() -> new VendedorNaoEncontradoException(vendedor.id()));
 
         repositoryVendedor.deleteByIdAndCpf(vendedor.id(),vendedor.cpf());
 
@@ -45,6 +43,6 @@ public class VendedorGatewayImpl implements VendedorGateway {
     @Override
     public Vendedor buscarVendedorPorId(UUID id) {
         return repositoryVendedor.findById(id).map(vendedorMapper::toDomain).
-                orElseThrow(() -> new RuntimeException("Vendedor não encontrado"));
+                orElseThrow(() -> new VendedorNaoEncontradoException(id));
     }
 }

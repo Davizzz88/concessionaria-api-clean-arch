@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.atualizar;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VeiculoNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 
@@ -18,7 +19,7 @@ public class AtualizarVeiculoUseCaseImpl implements AtualizarVeiculoUseCase {
         var existente = geteway.buscarVeiculoPorId(veiculo.id());
 
         if (existente == null){
-            throw new RuntimeException("Veiculo não encontrado");
+            throw new VeiculoNaoEncontradoException(veiculo.id());
         }
         return geteway.atualizarVeiculo(new Veiculo(
                 existente.id(),

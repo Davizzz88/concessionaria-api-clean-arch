@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.concessionaria.atualizar;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.ConcessionariaNaoEncontradaException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ConcessionariaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Concessionaria;
 
@@ -19,7 +20,7 @@ public class AtualizarConcessionariaUseCaseImpl implements AtualizarConcessionar
         var existente = geteway.buscarConcessionariaPorId(concessionaria.id());
 
         if (existente == null){
-            throw new RuntimeException("Concessionária não encontrada");
+            throw new ConcessionariaNaoEncontradaException(concessionaria.id());
         }
         return geteway.atualizarConcessionaria(new Concessionaria(
                 existente.id(),

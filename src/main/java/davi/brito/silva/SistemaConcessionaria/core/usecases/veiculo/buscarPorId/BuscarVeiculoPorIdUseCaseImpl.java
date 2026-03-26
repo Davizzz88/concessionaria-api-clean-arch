@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.veiculo.buscarPorId;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VeiculoNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 
@@ -19,7 +20,7 @@ public class BuscarVeiculoPorIdUseCaseImpl implements BuscarVeiculoPorIdUseCase 
         var existente = gateway.buscarVeiculoPorId(id);
 
         if (existente == null) {
-            throw new RuntimeException("Veiculo não encontrado");
+            throw new VeiculoNaoEncontradoException(id);
         }
 
         return existente;

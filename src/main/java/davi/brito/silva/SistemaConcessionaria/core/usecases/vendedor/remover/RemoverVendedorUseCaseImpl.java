@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.core.usecases.vendedor.remover;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VendedorNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VendedorGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Vendedor;
 
@@ -17,7 +18,7 @@ public class RemoverVendedorUseCaseImpl implements RemoverVendedorUseCase{
         var existente = gateway.buscarVendedorPorId(vendedor.id());
 
         if (existente == null){
-            throw new RuntimeException("Vendedor não encontrado");
+            throw new VendedorNaoEncontradoException(vendedor.id());
         }
 
         return gateway.removerVendedor(vendedor);

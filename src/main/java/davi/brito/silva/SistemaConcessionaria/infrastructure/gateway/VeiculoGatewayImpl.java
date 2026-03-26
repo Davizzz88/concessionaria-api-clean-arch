@@ -1,5 +1,6 @@
 package davi.brito.silva.SistemaConcessionaria.infrastructure.gateway;
 
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VeiculoNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.VeiculoGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.Veiculo;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.VeiculoMapper;
@@ -32,11 +33,8 @@ public class VeiculoGatewayImpl implements VeiculoGateway {
     @Override
     public Veiculo removerVeiculo(Veiculo veiculo) {
 
-        var existente = repositoryVeiculo.findById(veiculo.id());
-
-        if (existente.isEmpty()){
-            throw new RuntimeException("Veiculo não encontrado");
-        }
+        repositoryVeiculo.findById(veiculo.id()).
+                orElseThrow(() -> new VeiculoNaoEncontradoException(veiculo.id()));
 
         repositoryVeiculo.deleteByIdAndNome(veiculo.id(),veiculo.nome());
 
@@ -46,7 +44,7 @@ public class VeiculoGatewayImpl implements VeiculoGateway {
     @Override
     public Veiculo buscarVeiculoPorId(UUID id) {
         return repositoryVeiculo.findById(id).map(veiculoMapper::toDomain).
-                orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+                orElseThrow(() -> new VeiculoNaoEncontradoException(id));
     }
 
 

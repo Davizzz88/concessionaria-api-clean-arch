@@ -1,6 +1,8 @@
 package davi.brito.silva.SistemaConcessionaria.infrastructure.gateway;
 
 import davi.brito.silva.SistemaConcessionaria.core.enums.StatusVeiculo;
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.ClienteVendaNaoEncontradaException;
+import davi.brito.silva.SistemaConcessionaria.core.exceptions.model.VeiculoNaoEncontradoException;
 import davi.brito.silva.SistemaConcessionaria.core.gateway.ClienteVendaGateway;
 import davi.brito.silva.SistemaConcessionaria.core.model.ClienteVenda;
 import davi.brito.silva.SistemaConcessionaria.infrastructure.mapper.ClienteVendaMapper;
@@ -22,21 +24,17 @@ public class ClienteVendaGatewayImpl implements ClienteVendaGateway {
     @Override
     public ClienteVenda criarClienteVenda(ClienteVenda clienteVenda, UUID idVeiculo) {
 
-        var existente = repositoryVeiculo.findById(idVeiculo);
+        var existente = repositoryVeiculo.findById(idVeiculo).
+                orElseThrow(() -> new VeiculoNaoEncontradoException(idVeiculo));
 
-        if (existente.isEmpty()){
-            throw new RuntimeException("Veiculo não encontrado");
-        }
 
-        var veiculoEntity = existente.get();
+        existente.setStatusVeiculo(StatusVeiculo.VENDIDO);
 
-        veiculoEntity.setStatusVeiculo(StatusVeiculo.VENDIDO);
-
-        repositoryVeiculo.save(veiculoEntity);
+        repositoryVeiculo.save(existente);
 
         var clienteVendaEntity = clienteVendaMapper.toEntity(clienteVenda);
 
-        clienteVendaEntity.setVeiculo(veiculoEntity);
+        clienteVendaEntity.setVeiculo(existente);
 
         return clienteVendaMapper.toDomain(repositoryClienteVenda.save(clienteVendaEntity));
     }
@@ -44,6 +42,6 @@ public class ClienteVendaGatewayImpl implements ClienteVendaGateway {
     @Override
     public ClienteVenda buscarVendaPorId(UUID id) {
         return repositoryClienteVenda.findById(id).map(clienteVendaMapper::toDomain).
-                orElseThrow(() -> new RuntimeException("Venda não encontrada"));
+                orElseThrow(() -> new ClienteVendaNaoEncontradaException(id));
     }
 }
