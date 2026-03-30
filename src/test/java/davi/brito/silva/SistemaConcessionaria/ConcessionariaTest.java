@@ -62,6 +62,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -102,6 +103,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -135,6 +137,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -191,6 +194,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -203,6 +207,7 @@ public class ConcessionariaTest {
                     "RJ",
                     "Rio de Janeiro",
                     "(21) 9876-5432",
+                    concessionaria.senha(),
                     concessionaria.vendedor(),
                     concessionaria.veiculo(),
                     LocalDateTime.now()
@@ -247,6 +252,7 @@ public class ConcessionariaTest {
                     "RJ",
                     "Rio de Janeiro",
                     "(21) 9876-5432",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -283,6 +289,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
@@ -313,6 +320,7 @@ public class ConcessionariaTest {
                     "SP",
                     "São Paulo",
                     "(11) 1234-5678",
+                    "1234567890",
                     null,
                     null,
                     LocalDateTime.now()
