@@ -27,7 +27,11 @@ public class ConcessionariaGatewayImpl implements ConcessionariaGateway {
 
     @Override
     public Concessionaria atualizarConcessionaria(Concessionaria concessionaria) {
-        return concessionariaMapper.toDomain(repositoryConcessionaria.save(concessionariaMapper.toEntity(concessionaria)));
+        var cso = repositoryConcessionaria.findById(concessionaria.id())
+                .orElseThrow(() -> new ConcessionariaNaoEncontradaException(concessionaria.id()));
+        var domain = concessionariaMapper.toEntity(concessionaria);
+        domain.setSenha(cso.getSenha());
+        return concessionariaMapper.toDomain(repositoryConcessionaria.save(domain));
     }
 
     @Override

@@ -4,6 +4,7 @@ import davi.brito.silva.SistemaConcessionaria.infrastructure.persistence.entitie
 import jakarta.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.UUID;
 
@@ -11,5 +12,7 @@ public interface ConcessionariaRepository extends JpaRepository<ConcessionariaEn
 
     @Transactional
     void deleteByIdAndNome(UUID id, String nomeConcessionaria);
+
+    UserDetails findByNome(String nome);
 
 }

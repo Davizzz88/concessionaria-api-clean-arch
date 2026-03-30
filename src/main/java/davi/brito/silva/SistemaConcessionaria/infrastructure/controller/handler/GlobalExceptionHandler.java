@@ -28,6 +28,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
+
+        System.err.println("Erro fatal capturado: ");
+        ex.printStackTrace();
+
         var errorResponse = new ErrorResponse(500, "Erro interno do sistema.", LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
