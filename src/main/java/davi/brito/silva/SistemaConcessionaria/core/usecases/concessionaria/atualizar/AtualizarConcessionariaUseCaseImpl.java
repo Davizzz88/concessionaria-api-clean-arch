@@ -29,6 +29,7 @@ public class AtualizarConcessionariaUseCaseImpl implements AtualizarConcessionar
                 concessionaria.estado(),
                 concessionaria.cidade(),
                 concessionaria.telefone(),
+                existente.senha(),
                 existente.vendedor(),
                 existente.veiculo(),
                 LocalDateTime.now()

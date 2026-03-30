@@ -18,5 +18,8 @@ public record ConcessionariaRequest(
         String cidade,
         @NotBlank(message = "O campo de telefone é obrigatorio")
         @Size(max = 14, min = 14,  message = "O telefone deve estar no formato (xx)xxxxx-xxxx")
-        String telefone) {
+        String telefone,
+        @NotBlank
+        @Size(min = 8, message = "A senha deve conter no mínimo 8 caracteres")
+        String senha) {
 }

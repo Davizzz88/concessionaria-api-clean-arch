@@ -11,6 +11,7 @@ public record Concessionaria(
         String estado,
         String cidade,
         String telefone,
+        String senha,
         List<Vendedor> vendedor,
         List<Veiculo> veiculo,
         LocalDateTime ultimaAtualizacao) {
